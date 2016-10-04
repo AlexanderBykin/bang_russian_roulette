@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+import "MessageResponseShopItem.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseShopItemListBase";
+
+message MessageResponseShopItemList {
+    repeated MessageResponseShopItem shopItemList = 1;
+}

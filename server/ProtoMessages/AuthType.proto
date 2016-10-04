@@ -1,0 +1,11 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "AuthTypeBase";
+
+enum eAuthType {
+	atNone = 0;
+	atAppleGameCenter = 1;
+	atGooglePlay = 2;
+	atEmail = 3;
+}

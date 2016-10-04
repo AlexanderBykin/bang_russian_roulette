@@ -1,0 +1,20 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseAuthBase";
+
+message MessageResponseAuth {
+    enum eAuthErrorType {
+        aetNone = 1;
+        aetBadUID = 2;
+        aetUsedUID = 3;
+        aetNeedVerify = 4;
+        aetBadVerify = 5;
+        aetBlocked = 6;
+        aetNoPassOrVerify = 7;
+        aetNotAllRequiredFields = 8;
+        aetPasswordChanged = 9;
+    }
+    required eAuthErrorType errorType = 1 [default = aetNone];
+    optional int64 playerId = 2;
+}

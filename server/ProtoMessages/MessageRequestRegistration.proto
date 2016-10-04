@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "AuthType.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestRegistrationBase";
+
+message MessageRequestRegistration {
+    required eAuthType authType = 1 [default = atNone];
+    required string login = 2;
+    required string password = 3;
+    required string displayName = 4;
+}

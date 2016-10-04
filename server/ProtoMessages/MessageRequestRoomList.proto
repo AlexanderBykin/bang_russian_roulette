@@ -1,0 +1,14 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestRoomListBase";
+
+message MessageRequestRoomList {
+    enum eBetType {
+        btTINY = 0;
+        btSMALL = 1;
+        btMEDIUM = 2;
+        btBIG = 3;
+    }
+    required eBetType betType = 2 [default = btTINY];
+}

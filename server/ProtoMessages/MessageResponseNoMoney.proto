@@ -1,0 +1,9 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseNoMoneyBase";
+
+message MessageResponseNoMoney {
+    required int64 amount = 1 [default = 0];
+    required int64 need = 2 [default = 0];
+}

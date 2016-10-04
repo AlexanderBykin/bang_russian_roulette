@@ -1,0 +1,12 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestWatchAdBase";
+
+message MessageRequestWatchAd {
+    enum eAdType {
+        atVungle = 0;
+        atAdColony = 1;
+    }
+    required eAdType adType = 1 [default = atVungle];
+}

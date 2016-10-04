@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import "PlayerShootDirection.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseRoomPlayerInfoBase";
+
+message MessageResponseRoomPlayerInfo {
+    required int64 playerId = 1 [default = 0];
+    required string playerName = 2 [default = ""];
+    required int32 playerPosition = 3 [default = 0];
+    required bytes playerAvatar = 4 [default = "\0"];
+    required PlayerShootDirection shootDirection = 5 [default = psdLEFT];
+}

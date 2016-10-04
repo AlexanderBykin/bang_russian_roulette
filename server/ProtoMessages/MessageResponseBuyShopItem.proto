@@ -1,0 +1,15 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseBuyShopItemBase";
+
+message MessageResponseBuyShopItem {
+    enum eBuyErrorType {
+        betNone = 0;
+        betMoneyLessThenNeed = 1;
+        betReceiptError = 2;
+        betInternalError = 3;
+    }
+    required string shopItemName = 1 [default = ""];
+    required eBuyErrorType buyErrorType = 2 [default = betNone];
+}

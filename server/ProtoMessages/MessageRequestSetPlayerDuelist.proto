@@ -1,0 +1,9 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestSetPlayerDuelistBase";
+
+message MessageRequestSetPlayerDuelist {
+    required int64 roomId = 1 [default = 0];
+    required int32 position = 2 [default = 0];
+}

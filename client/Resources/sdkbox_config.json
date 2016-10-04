@@ -1,0 +1,179 @@
+{
+    "android": {
+        "GoogleAnalytics": {
+            "trackingCode": "UA-68500000-1"
+        }, 
+        "Vungle": {
+            "id": "561654a952e5a56844000000", 
+            "ads": {
+                "reward": {
+                    "sound": false, 
+                    "backbutton": false, 
+                    "incentivized": true
+                }, 
+                "video": {
+                    "sound": true, 
+                    "backbutton": true
+                }
+            }
+        }, 
+        "sdkboxplay": {
+            "leaderboards": [
+                {
+                    "id": "CgkIoqDyy5EIEA0000", 
+                    "name": "Best player"
+                }
+            ], 
+            "achievements": [
+                {
+                    "incremental": false, 
+                    "id": "CgkIoqDyy5EIEA0000", 
+                    "name": "Use first item"
+                }, 
+                {
+                    "incremental": false, 
+                    "id": "CgkIoqDyy5EIE0000", 
+                    "name": " Use bet"
+                }, 
+                {
+                    "incremental": false, 
+                    "id": "CgkIoqDyy5EIEA0000", 
+                    "name": "Act as Watcher"
+                }, 
+                {
+                    "incremental": false, 
+                    "id": "CgkIoqDyy5EIEA0000", 
+                    "name": "Act as Player"
+                }
+            ], 
+            "connect_on_start": true, 
+            "debug": true
+        }, 
+        "iap": {
+            "items": {
+                "brr_collection_12_armored_bullet": {
+                    "id": "brr_collection_12_armored_bullet"
+                }, 
+                "brr_money_16000": {
+                    "id": "brr_money_16000"
+                }, 
+                "brr_money_32000": {
+                    "id": "brr_money_32000"
+                }, 
+                "brr_money_1000": {
+                    "id": "brr_money_1000"
+                }, 
+                "brr_money_4000": {
+                    "id": "brr_money_4000"
+                }, 
+                "brr_collection_6_broken_bullet_helmet": {
+                    "id": "brr_collection_6_broken_bullet_helmet"
+                }, 
+                "brr_money_2000": {
+                    "id": "brr_money_2000"
+                }, 
+                "brr_money_64000": {
+                    "id": "brr_money_64000"
+                }, 
+                "brr_money_8000": {
+                    "id": "brr_money_8000"
+                }, 
+                "brr_collection_12_broken_bullet": {
+                    "id": "brr_collection_12_broken_bullet"
+                }, 
+                "brr_collection_6_armored_bullet_helmet": {
+                    "id": "brr_collection_6_armored_bullet_helmet"
+                }
+            }, 
+            "key": "MIIBIjANBgk0000G9w0BAQEFAA00008AMIIBCgKCAQEAyTY8yrK9BLHVd6ni0000e2JOFNCvCmaOmkqeAvpzHAp0000mpzoSMy4d7e4hX0sON/LlOxnNC0000r/NjdvvX16m5NfjMwwloL3wI/xCbkGjOc8aLu00000+5OhrPK6lKwmUXDjWw/dAYIsu0000pdMJ/wv2nYFiUm+BM2P0000nwPNlvwnELYP/c/6lmp+l/RUVu2JGvbA7osPGKZ0000p8Dxz/6m7MkGDWkQSoyQvfGoNGkIQhx+JZRRKsXWFFJjTQyL5700000BOI0PLzE7Nlfur0000cJjMSj367rhdqznULckKID0000CqH3tTHNDMePO40yviSSa0000mowwIDAQAB"
+        }
+    }, 
+    "ios": {
+        "GoogleAnalytics": {
+            "trackingCode": "UA-68500000-1"
+        }, 
+        "Vungle": {
+            "id": "561654a952e5a56844000000", 
+            "ads": {
+                "reward": {
+                    "sound": false, 
+                    "backbutton": false, 
+                    "incentivized": true
+                }, 
+                "video": {
+                    "sound": true, 
+                    "backbutton": true
+                }
+            }
+        }, 
+        "sdkboxplay": {
+            "leaderboards": [
+                {
+                    "id": "ldb1", 
+                    "name": "ldb1"
+                }
+            ], 
+            "achievements": [
+                {
+                    "incremental": false, 
+                    "id": "tengames", 
+                    "name": "ten-games"
+                }, 
+                {
+                    "incremental": false, 
+                    "id": "hunter", 
+                    "name": "hunter"
+                }, 
+                {
+                    "incremental": false, 
+                    "id": "craftsman", 
+                    "name": "craftsman"
+                }, 
+                {
+                    "incremental": true, 
+                    "id": "CgkI0sux8sMWEAIQBQ", 
+                    "name": "incremental"
+                }
+            ], 
+            "connect_on_start": false, 
+            "debug": true
+        }, 
+        "iap": {
+            "items": {
+                "brr_collection_12_armored_bullet": {
+                    "id": "brr_collection_12_armored_bullet"
+                }, 
+                "brr_money_16000": {
+                    "id": "brr_money_16000"
+                }, 
+                "brr_money_32000": {
+                    "id": "brr_money_32000"
+                }, 
+                "brr_money_1000": {
+                    "id": "brr_money_1000"
+                }, 
+                "brr_money_4000": {
+                    "id": "brr_money_4000"
+                }, 
+                "brr_collection_6_broken_bullet_helmet": {
+                    "id": "brr_collection_6_broken_bullet_helmet"
+                }, 
+                "brr_money_2000": {
+                    "id": "brr_money_2000"
+                }, 
+                "brr_money_64000": {
+                    "id": "brr_money_64000"
+                }, 
+                "brr_money_8000": {
+                    "id": "brr_money_8000"
+                }, 
+                "brr_collection_12_broken_bullet": {
+                    "id": "brr_collection_12_broken_bullet"
+                }, 
+                "brr_collection_6_armored_bullet_helmet": {
+                    "id": "brr_collection_6_armored_bullet_helmet"
+                }
+            }
+        }
+    }
+}

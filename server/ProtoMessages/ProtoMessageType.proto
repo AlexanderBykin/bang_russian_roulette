@@ -1,0 +1,44 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "ProtoMessageTypeBase";
+
+enum eProtoMessageType {
+    cmtNone = 0;
+    cmtCheckAPIVersion = 1; // проверка версии протокола между клиентом и сервером
+    cmtAuth = 2; // авторизоваться на сервере
+    cmtNeedAuth = 3; // нужна авторизация
+    cmtUpdateSettings = 4; // изменить настройки игры
+    cmtUpdateAvatar = 5; // обновить аватарку
+    cmtGetRoomList = 6; // получить список комнат в указанной категории
+    cmtRoomPlayerInit = 7;
+    cmtGetRoomPlayers = 8; // получить список игроков комнаты
+    cmtRoomResults = 9; // показать результаты игры комнаты за раунд
+    cmtSetPistolBullets = 10; // поместить патроны в барабан
+    cmtSetPlayerTypeAndPosition = 11; // посадить игрока на указанное место в комнате
+    cmtRoomPlayerExit = 12;
+    cmtRotateDrum = 13; // вращать барабан с патронами
+    cmtBang = 14; // сделать выстрел
+    cmtTimeToStart = 15; // показать время до старта раунда в комнате
+    cmtTimeToEnd = 16; // показать время до окончания раунда в комнате
+    cmtTimeToPutBullets = 17; // показать окно вставки патронов для игрока
+    cmtTimeToRotateDrum = 18; // показать кнопку вращения барабана, время и сообщение игроку для вращения
+    cmtTimeToShoot = 19; // показать лампу, оставшееся время и кнопку стрелять для     cmtRoomExit(18), // игрок выходит из комнаты
+    cmtRoomExit = 20; // игрок выходит из комнаты
+    cmtGetShopItems = 21; // получить продаваемые вещи Магазина по виду (Коллекции, Вещи, Деньги)
+    cmtUsePlayerInventoryItem = 22; // использовать вещь игрока на другом игроке в комнате
+    cmtGetRoomInfo = 23; // получить информацию о комнате Ид комнаты, мин/макс ставка, макс игроков, стартовала игра или нет
+    cmtGetMoney = 24; // получить деньги для игрока
+    cmtBuyShopItem = 25; // купить вещь в магазине
+    cmtPlayerBet = 26; // сделать ставку на игрока
+    cmtGetRoomPlayersDuelist = 27; // получить список игроков + выбранных дуэлянтов
+    cmtSetPlayerDuelist = 28; // игрок выбрал позицию в диалоге выбора дуэлянтов
+    cmtNoMoney = 29; // у игрока нету денег для участия в игре
+    cmtGetPlayerInfo = 30; // информация об игроке
+    cmtWatchAd = 31; // просмотр рекламы и награждение
+    cmtGetPlayerProfile = 32; // профиль игрока
+    cmtUpdatePlayerProfile = 33; // обновить профиль игрока
+    cmtRegister = 34; // регистрация игрока
+    cmtForgotPassword = 35; // игрок забыл пароль
+    cmtPing = 100; cmtPong = 101; // пинги
+}

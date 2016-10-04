@@ -1,0 +1,151 @@
+/*
+    Bang Russian Roulette (server) - This is real online and multiplayer game published at Google Play.
+    Copyright (C) 2016  Alexander Shniperson
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+description = 'BRR Model Driven Architecture'
+
+configurations {
+    compile
+}
+
+ext {
+    javaVersion = "1.8"
+    andromdaVersion = "3.4"
+    hibernateVersion = "3.6.10.Final"
+    configFileName = project(":brr-mda").projectDir.path + "/src/main/config/andromda-gradle.xml"
+    modelUri = project(":brr-mda").projectDir.path + "/src/main/uml/brr.uml"
+    filter = ""
+    modelValidation = "true"
+    confDir = project(":brr-mda").projectDir.path + "/src/main/config"
+    applicationId = "brr-server"
+    applicationPackage = "net.orionlab.brr"
+    coreManualDir = project(':brr-core').projectDir.path + "/src/main/java"
+    coreGeneratedDir = project(':brr-core').projectDir.path + "/generated/src/main/java"
+    coreGeneratedResourcesDir = project(':brr-core').projectDir.path + "/generated/src/main/resources"
+    commonGeneratedDir = project(':brr-common').projectDir.path + "/generated/src/main/java"
+    coreGeneratedTestDir = project(':brr-core').projectDir.path + "/generated/src/test/java"
+    coreGeneratedTestResourcesDir = project(':brr-core').projectDir.path + "/generated/src/test/resources"
+    hibernateInheritanceStrategy = "subclass"
+    hibernateDbShowSql = "false"
+    hibernateGeneratorClass = "native"
+    jdbcUsername = "postgres"
+    jdbcPassword = ""
+    jdbcDriver = "org.postgresql.Driver"
+    jdbcUrl = "jdbc:postgresql://localhost/brrdb"
+    hibernateDialect = "org.hibernate.dialect.PostgreSQLDialect"
+    sqlMappings = "PostgreSQL9"
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2.12'
+    compile 'org.slf4j:slf4j-log4j12:1.7.21'
+    compile(group: 'org.andromda.ant', name: 'andromda-ant-task', version: "$andromdaVersion")
+    compile(group: 'org.andromda', name: 'andromda-core', version: "$andromdaVersion")
+    compile(group: 'org.andromda.templateengines', name: 'andromda-templateengine-velocity', version: "$andromdaVersion")
+    compile("org.andromda.metafacades:andromda-metafacades-emf-uml22:$andromdaVersion")
+    compile("org.andromda.repositories:andromda-repository-emf-uml22:$andromdaVersion")
+    compile("org.andromda.metafacades:andromda-metafacades-uml:$andromdaVersion")
+    compile(group: 'org.andromda.maven.plugins', name: 'andromda-maven-plugin', version: "$andromdaVersion")
+    compile(group: 'org.andromda.profiles.uml2', name: 'andromda-profile', version: "$andromdaVersion")
+    compile(group: 'org.andromda.cartridges', name: 'andromda-spring-cartridge', version: "$andromdaVersion")
+    compile(group: 'org.andromda.cartridges', name: 'andromda-hibernate-cartridge', version: "$andromdaVersion")
+    compile(group: 'org.andromda.cartridges', name: 'andromda-java-cartridge', version: "$andromdaVersion")
+    compile(group: 'org.andromda.translationlibraries', name: 'andromda-ocl-validation-library', version: "$andromdaVersion")
+    compile(group: 'org.andromda.translationlibraries', name: 'andromda-ocl-query-library', version: "$andromdaVersion")
+    compile(group: 'org.hibernate', name: 'hibernate-core', version: "$hibernateVersion") {
+        exclude(module: 'jta')
+    }
+    compile(group: 'org.postgresql', name: 'postgresql', version: '9.2-1003-jdbc4')
+}
+
+task readProperties << {
+    ant.properties['baseDir'] = project(":brr-mda").projectDir.path
+    ant.properties['javaVersion'] = javaVersion
+    ant.properties['andromdaVersion'] = andromdaVersion
+    ant.properties['modelUri'] = modelUri
+    ant.properties['modelValidation'] = modelValidation
+    ant.properties['filter'] = filter
+    ant.properties['confDir'] = confDir
+    ant.properties['applicationPackage'] = applicationPackage
+    ant.properties['coreGeneratedDir'] = coreGeneratedDir
+    ant.properties['coreGeneratedResourcesDir'] = coreGeneratedResourcesDir
+    ant.properties['coreGeneratedTestDir'] = coreGeneratedTestDir
+    ant.properties['coreGeneratedTestResourcesDir'] = coreGeneratedTestResourcesDir
+    ant.properties['coreManualDir'] = coreManualDir
+    ant.properties['commonGeneratedDir'] = commonGeneratedDir
+    ant.properties['hibernateInheritanceStrategy'] = hibernateInheritanceStrategy
+    ant.properties['hibernateDbShowSql'] = hibernateDbShowSql
+    ant.properties['hibernateGeneratorClass'] = hibernateGeneratorClass
+    ant.properties['applicationId'] = applicationId
+    ant.properties['dataSource'] = 'jdbc/brrdb'
+    ant.properties['sqlMappings'] = 'PostgreSQL9'
+    //Hibernate properties
+    ant.properties['hibernate.version'] = "3"
+    ant.properties['hibernate.dialect'] = hibernateDialect
+    ant.properties['hibernate.hbm2dll.auto'] = 'update'
+    ant.properties['jdbcDriver'] = jdbcDriver
+    ant.properties['jdbcUsername'] = jdbcUsername
+    ant.properties['jdbcPassword'] = jdbcPassword
+    ant.properties['jdbcUrl'] = jdbcUrl
+    ant.properties['localRepositoryDir'] = "~/.m2/repository/"
+
+    //This is because of bug in AndromdaGenTask property value casting as String
+    ant.properties['size'] = "83"
+}
+
+task schemaDropCreate << {
+    logging.level = LogLevel.INFO
+    mkdir(project(":brr-mda").projectDir.path + '/migration')
+
+    def outputFileName = project(":brr-mda").projectDir.path + '/migration/schema-drop-create.sql'
+
+    ant.taskdef(name: 'schemaExport', classname: 'org.hibernate.tool.hbm2ddl.SchemaExportTask', classpath: configurations.compile.asPath)
+    ant.schemaExport(quiet: 'no', text: 'yes', delimiter: ';', output: outputFileName) {
+        fileset(dir: coreGeneratedDir, includes: '**/*.hbm.xml')
+    }
+}
+
+task schemaUpdate << {
+    logging.level = LogLevel.INFO
+    mkdir(project(":brr-mda").buildDir.path + '/schema')
+
+    ant.taskdef(name: 'schemaUpdate', classname: 'org.hibernate.tool.hbm2ddl.SchemaUpdateTask', classpath: configurations.compile.asPath)
+    ant.schemaUpdate(quiet: 'no', text: 'yes') {
+        fileset(dir: coreGeneratedDir, includes: '**/*.hbm.xml')
+    }
+}
+
+task generate << {
+    System.setProperty('logback.configurationFile', 'logback.xml')
+    logging.level = LogLevel.INFO
+    project.ext.cleanDirs = [coreGeneratedDir, coreGeneratedResourcesDir, coreGeneratedTestDir, coreGeneratedTestResourcesDir, commonGeneratedDir]
+    project.ext.cleanDirs.each {
+        cleanDir ->
+            println 'Cleaning ' + cleanDir
+            delete cleanDir
+    }
+
+    logging.level = LogLevel.INFO
+    ant.taskdef(name: "andromda", classname: "org.andromda.ant.task.AndroMDAGenTask", classpath: configurations.compile.asPath)
+    ant.andromda(configurationUri: new File(configFileName).toURI())
+
+    //schemaDropCreate.execute()
+}
+
+generate.dependsOn readProperties
+schemaDropCreate.dependsOn readProperties
+schemaUpdate.dependsOn readProperties

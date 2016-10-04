@@ -1,0 +1,10 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "PlayerShootDirectionBase";
+
+enum PlayerShootDirection {
+    psdLEFT = 0;
+    psdRIGHT = 1;
+    psdDOUBLE = 2;
+}

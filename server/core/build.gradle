@@ -1,0 +1,79 @@
+/*
+    Bang Russian Roulette (server) - This is real online and multiplayer game published at Google Play.
+    Copyright (C) 2016  Alexander Shniperson
+    Email: alex.shniperson@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+description = 'Russian Roulette Core Business Tier'
+
+configurations {
+    scalaCompilerPlugin
+}
+//configurations.scalaCompiler.transitive = false
+
+dependencies {
+    scalaCompilerPlugin "org.scalamacros:paradise_2.11.7:2.1.0-M5"
+    compile "com.github.fomkin:pushka-json_$scalaBinaryVersion:0.6.0"
+    compile project(':brr-common')
+    compile group: 'org.springframework', name: 'spring-orm', version: '3.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '3.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '3.2.4.RELEASE'
+    runtime group: 'org.springframework', name: 'spring-context-support', version: '3.2.4.RELEASE'
+    compile group: 'javax.transaction', name: 'jta', version: '1.1'
+    compile group: 'javax.servlet', name: 'servlet-api', version: '2.4'
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+    compile(group: 'org.hibernate', name: 'hibernate-entitymanager', version: '3.6.10.Final') {
+        exclude(module: 'jta')
+        exclude(module: 'xml-apis')
+    }
+    compile group: 'org.javassist', name: 'javassist', version: '3.16.1-GA'
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.1'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.3'
+    compile group: 'com.google.protobuf', name: 'protobuf-lite', version: '3.0.0-beta-3' // use commit [2fe0556]
+    compile group: 'com.sun.mail', name: 'javax.mail', version: '1.5.2'
+    compile group: 'org.apache.commons', name: 'commons-email', version: '1.4'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    compile(group: 'org.andromda', name: 'andromda-core', version: '3.4') {
+        exclude(module: 'log4j')
+    }
+    compile(group: 'org.andromda.translationlibraries', name: 'andromda-ocl-translation-core', version: '3.4') {
+        exclude(module: 'log4j')
+    }
+    compile(group: 'org.andromda.translationlibraries', name: 'andromda-ocl-validation-library', version: '3.4') {
+        exclude(module: 'log4j')
+    }
+    compile(group: 'org.andromda', name: 'andromda-script-wrappers', version: '3.4')
+    testCompile group: 'org.springframework', name: 'spring-test', version: '3.2.4.RELEASE'
+    testCompile group: 'postgresql', name: 'postgresql', version: '9.1-901.jdbc4'
+    testCompile group: 'org.testng', name: 'testng', version: '6.8'
+}
+
+test {
+    testLogging {
+        events 'started', 'passed', 'failed', 'STANDARD_OUT'
+    }
+    useTestNG() {
+        suiteXmlFiles = [new File('src/test/resources/testng.xml')]
+    }
+    testLogging.showStandardStreams = true
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = [
+            "-Xplugin:" + configurations.scalaCompilerPlugin.asPath
+    ]
+}
+

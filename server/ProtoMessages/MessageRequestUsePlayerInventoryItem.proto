@@ -1,0 +1,10 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestUsePlayerInventoryItemBase";
+
+message MessageRequestUsePlayerInventoryItem {
+    required int64 roomId = 1 [default = 0];
+    required int64 destPlayerId = 2 [default = 0];
+    required string shopItemName = 3 [default = ''];
+}

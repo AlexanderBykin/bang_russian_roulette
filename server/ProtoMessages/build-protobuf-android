@@ -1,0 +1,32 @@
+# Google Android
+#export SYSROOT=/opt/android-ndk/sysroot
+#export CC="arm-linux-androideabi-gcc --sysroot $SYSROOT"
+#export CXX="arm-linux-androideabi-g++ --sysroot $SYSROOT"
+#export CXXSTL=$NDK/sources/cxx-stl/gnu-libstdc++/4.6
+
+make distclean
+
+#./configure \
+#--exec-prefix=/usr/local/lib/platform/arm-android \
+#--host=arm-linux-androideabi \
+#--with-sysroot=$SYSROOT \
+#--disable-shared \
+#CFLAGS="-march=armv7-a" \
+#CXXFLAGS="-march=armv7-a -I$CXXSTL/include -I$CXXSTL/libs/armeabi-v7a/include"
+
+
+export ANDROID_ROOT="/opt/android-ndk"
+PREBUILT=$ANDROID_ROOT/toolchains/arm-linux-androideabi-4.4.3
+PLATFORM=$ANDROID_ROOT/platforms/android-3/arch-arm/
+export CC="$ANDROID_ROOT/toolchains/arm-linux-androideabi- 4.4.3/prebuilt/darwin-x86/bin/arm-linux-androideabi-gcc"
+export CFLAGS="-fPIC -DANDROID -nostdlib"
+export LDFLAGS="-Wl,-rpath-link=$ANDROID_ROOT/platforms/android-3/arch-arm/usr/lib/ -L$ANDROID_ROOT/platforms/android-3/arch-arm/usr/lib/"
+export CPPFLAGS="-I$ANDROID_ROOT/platforms/android-3/arch-arm/usr/include/"
+export LIBS="-lc "
+./configure \
+--exec-prefix=/usr/local/lib/platform/arm-android \
+--host=arm-eabi \
+--disable-shared
+
+make
+make install

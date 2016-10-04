@@ -1,0 +1,14 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponsePlayerProfileBase";
+
+message MessageResponsePlayerProfile {
+    required string playerName = 1 [default = ""];
+    required string playerEmail = 2 [default = ""];
+    required int64 playerMoney = 3 [default = 0];
+    required bytes playerAvatar = 4 [default = "\0"];
+    required int32 playerWins = 5 [default = 0];
+    required int32 playerLoses = 6 [default = 0];
+    required int32 playerRating = 7 [default = 0];
+}

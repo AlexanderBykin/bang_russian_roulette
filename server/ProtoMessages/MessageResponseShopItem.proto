@@ -1,0 +1,19 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseShopItemBase";
+
+message MessageResponseShopItem {
+    enum eUsageType {
+        utPlayer = 0;
+        utEnemy = 1;
+        utBoth = 2;
+        utNone = 3;
+    }
+    required string name = 1 [default = ""];
+    required string imageName = 2 [default = ""];
+    required string description = 3 [default = ""];
+    required int32 cost = 4 [default = 0];
+    optional int32 amount = 5 [default = 0];
+    required eUsageType usageType = 6 [default = utPlayer];
+}

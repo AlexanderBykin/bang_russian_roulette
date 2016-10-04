@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+import "RoomShootDirection.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseRoomInfoBase";
+
+message MessageResponseRoomInfo {
+    required int64 roomId = 1 [default = 0];
+    required int32 bet = 2 [default = 0];
+    required int32 amountPlayers = 4 [default = 0];
+    required int32 maxPlayers = 5 [default = 0];
+    required int32 currentRound = 6 [default = 0];
+    required int32 maxRounds = 7 [default = 0];
+    required int64 playerbank = 8 [default = 0];
+    required int64 investorbank = 9 [default = 0];
+    required bool isGameStarted = 10 [default = false];
+    required RoomShootDirection shootDirection = 11 [default = rsdLEFT];
+}

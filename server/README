@@ -1,0 +1,32 @@
+Bang Russian Roulette (server) - online multiplayer game.
+
+Developed with:
+- Scala 2.11.8;
+- Akka 2.4.5;
+- Hibernate 3.6.10;
+- AndroMDA 3.4;
+- Pushka Json 0.6.0;
+- Protobuf 3.0.0-beta-3 commit [2fe0556];
+
+Project structure:
+- common: planned to use as artifact between many systems;
+- core: server core artifact with all game logic;
+- mda: artifact that generates classes from UML diagram for Hibernate;
+- war: artifact that build WAR file that next deploy to Glassfish server;
+- protomessages: here stored source of Proto messages that next generates to the classes;
+
+Setup your PC:
+- download and install Java JDK >= 1.8 http://www.oracle.com/
+- download and install Maven (this need to build Protobuf) https://maven.apache.org/
+- download and install Gradle (this nedd to build our server application) http://gradle.org/
+- clone Protobuf https://github.com/google/protobuf
+- (optional) build Protobuf protoc compiler, copy build-protobuf-iphonesim.sh into Protobuf directory and run it, this file builds static library for iOS, in my case it is placed at '/usr/local/platform/i386-sim/lib/' create symbolic link to Protoc compiler from '/usr/local/platform/i386-sim/bin/protoc' into '/usr/local/bin/protoc'
+
+Build hibernate classes from UML diagramm use command:
+gradle brr-mda:generate
+
+Build Protobuf client/server classes from proto files:
+gradle genProto
+
+Build WAR file:
+gradle brr-war:war

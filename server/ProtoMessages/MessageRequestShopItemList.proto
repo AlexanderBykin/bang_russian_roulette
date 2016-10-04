@@ -1,0 +1,17 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestShopItemListBase";
+
+message MessageRequestShopItemList {
+    enum eShopItemType {
+        sitITEMS = 0;
+        sitCOLLECTIONITEMS = 1;
+        sitCOLLECTIONMONEY = 2;
+        sitINVENTORY = 3;
+        sitINVENTORYWITHSHOP = 4;
+        sitVIDEOAD = 5;
+    }
+    required eShopItemType shopItemType = 1 [default = sitITEMS];
+    required string lang = 2 [default = ""];
+}

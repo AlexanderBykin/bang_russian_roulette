@@ -1,0 +1,9 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseRotateDrumBase";
+
+message MessageResponseRotateDrum {
+    required int64 roomId = 1 [default = 0];
+    required int64 playerId = 2 [default = 0];
+}

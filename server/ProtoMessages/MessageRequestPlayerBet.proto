@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "PlayerBetWinType.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestPlayerBetBase";
+
+message MessageRequestPlayerBet {
+    required int64 roomId = 1 [default = 0];
+    required int64 destPlayerId = 2 [default = 0];
+    required int64 amount = 3 [default = 0];
+    required PlayerBetWinType winType = 4 [default = pbwtWin];
+}

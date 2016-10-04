@@ -1,0 +1,8 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestCheckApiBase";
+
+message MessageRequestCheckApi {
+    required string version = 1 [default = ""];
+}

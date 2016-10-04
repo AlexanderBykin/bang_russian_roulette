@@ -1,0 +1,204 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- These settings apply specifically to the andromda code generation process. To generate code without
+    compiling or testing or packaging, run mvn install from /mda instead of from the root directory. -->
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>brr-mda</artifactId>
+    <groupId>net.orionlab.brr</groupId>
+    <version>1.0</version>
+    <description>The Russian Roulette Project.</description>
+    <packaging>pom</packaging>
+    <name>Russian Roulette MDA</name>
+    <dependencies>
+        <!-- provided profile dependencies are not added to the manifest, used only at code generation time -->
+        <dependency>
+            <groupId>org.andromda.profiles.uml2</groupId>
+            <artifactId>andromda-profile</artifactId>
+            <version>${andromda.version}</version>
+            <type>xml.zip</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.andromda.cartridges</groupId>
+            <artifactId>andromda-spring-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.andromda.cartridges</groupId>
+            <artifactId>andromda-hibernate-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.andromda.cartridges</groupId>
+            <artifactId>andromda-java-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.andromda.translationlibraries</groupId>
+            <artifactId>andromda-ocl-validation-library</artifactId>
+            <version>${andromda.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.andromda.translationlibraries</groupId>
+            <artifactId>andromda-ocl-query-library</artifactId>
+            <version>${andromda.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>eclipse</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.andromda.maven.plugins</groupId>
+                            <artifactId>andromdapp-maven-plugin</artifactId>
+                            <version>${andromda.version}</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <!-- This will overwrite top level .project and .classpath each time.
+                         The maven Eclipse plugin in mda/pom.xml does a better job anyway. See mda/eclipse.bat.-->
+                    <plugin>
+                        <groupId>org.andromda.maven.plugins</groupId>
+                        <artifactId>andromdapp-maven-plugin</artifactId>
+                        <version>${andromda.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>eclipse</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <excludes>
+                                <exclude>app/pom.xml</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <build>
+        <sourceDirectory>${project.basedir}/src/main/uml</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-maven-plugin</artifactId>
+                <version>${andromda.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configurationUri>${project.basedir}/src/main/config/andromda.xml</configurationUri>
+                    <!-- Check model dates vs output file dates from previous gen, skip if files are later -->
+                    <lastModifiedCheck>true</lastModifiedCheck>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <properties>
+        <model.uri>file:${project.basedir}/src/main/uml/brr.uml</model.uri>
+        <javaVersion>1.7</javaVersion>
+        <filter></filter>
+        <validation>true</validation>
+        <!-- ant script location for temp copy of resources -->
+        <andromda.project>${project.basedir}/..</andromda.project>
+        <conf.dir>${project.basedir}/src/main/config</conf.dir>
+        <!-- cartridge output locations -->
+        <common.generated.dir>${project.basedir}/../core/generated/src/main/java</common.generated.dir>
+        <common.manual.dir>${project.basedir}/../core/src/main/java</common.manual.dir>
+        <core.generated.dir>${project.basedir}/../core/generated/src/main/java</core.generated.dir>
+        <core.generated.resources>${project.basedir}/../core/generated/src/main/resources</core.generated.resources>
+        <core.manual.dir>${project.basedir}/../core/src/main/java</core.manual.dir>
+        <core.manual.java.dir>${project.basedir}/../core/src/main/java</core.manual.java.dir>
+        <core.manual.test.resources>${project.basedir}/../core/src/test/resources</core.manual.test.resources>
+        <core.generated.test.dir>${project.basedir}/../core/generated/src/test/java</core.generated.test.dir>
+        <core.manual.test.dir>${project.basedir}/../core/src/test/java</core.manual.test.dir>
+        <web.generated.dir>${project.basedir}/../web/generated</web.generated.dir>
+        <web.generated.java.dir>${web.generated.dir}/src/main/java</web.generated.java.dir>
+        <web.generated.web.dir>${web.generated.dir}/src/main/webapp</web.generated.web.dir>
+        <web.manual.dir>${project.basedir}/../web/src/main</web.manual.dir>
+        <web.manual.web.dir>${web.manual.dir}/webapp</web.manual.web.dir>
+        <web.manual.java.dir>${web.manual.dir}/java</web.manual.java.dir>
+        <!-- hibernate configuration -->
+        <!-- default strategy to use when using inheritance -->
+        <hibernate.inheritance.strategy>subclass</hibernate.inheritance.strategy>
+        <!-- hibernate generator class to use for identifiers -->
+        <hibernate.generatorClass>native</hibernate.generatorClass>
+        <andromda.version>3.4</andromda.version>
+        <downloadSources>true</downloadSources>
+        <createChecksum>true</createChecksum>
+        <uniqueVersion>false</uniqueVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <stagingDirectory>./brr/target/site</stagingDirectory>
+        <sql.mappings>
+            PostgreSQL9
+        </sql.mappings>
+        <hibernate.dialect>
+            org.hibernate.dialect.PostgreSQLDialect
+        </hibernate.dialect>
+        <!--<tomcat.home>${env.CATALINA_HOME}</tomcat.home>-->
+        <application.id>brr</application.id>
+        <application.package>net.orionlab.brr</application.package>
+        <application.name>Russian Roulette</application.name>
+        <application.version>1.0</application.version>
+        <dataSource.name>jdbc/brrdb</dataSource.name>
+        <dataSource>${dataSource.name}</dataSource>
+        <!-- Set andromda.xml hibernateVersion=4, sessionFactory and localTransactionManager to hibernate4
+        Spring cartridge only works with hibernate3.
+        <hibernate.version>4.1.7.Final</hibernate.version-->
+        <spring.version>3.2.4.RELEASE</spring.version>
+        <hibernate.version>3.6.10.Final</hibernate.version>
+        <!-- SCM user ID and Password here, or in user specific settings.xml file -->
+        <username></username>
+        <password></password>
+        <maven-javadoc-plugin.version>2.9</maven-javadoc-plugin.version>
+        <jdbc.driver.jar>
+            ${settings.localRepository}/postgresql/postgresql/9.4-1201.jdbc4/postgresql-9.4-1201.jdbc4.jar
+        </jdbc.driver.jar>
+        <jdbc.driver>
+            org.postgresql.Driver
+        </jdbc.driver>
+        <jdbc.url>
+            jdbc:postgresql://127.0.0.1/brrdb
+        </jdbc.url>
+        <!-- Enter id/password for the database connection -->
+        <jdbc.username>
+            postgres
+        </jdbc.username>
+        <jdbc.password>
+            ok
+        </jdbc.password>
+        <jdbc.exception.sorter>
+            org.jboss.resource.adapter.jdbc.DummyExceptionSorter
+        </jdbc.exception.sorter>
+    </properties>
+    <prerequisites>
+        <maven>3.0.5</maven>
+    </prerequisites>
+</project>

@@ -1,0 +1,25 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestBuyShopItemBase";
+
+message MessageRequestBuyShopItem {
+    enum eMarketType {
+        atNone = 0;
+        atApple = 1;
+        atGoogle = 2;
+    }
+    enum eBuyType {
+        btRealMoney = 0;
+        btInGameCash = 1;
+    }
+    enum eItemType {
+        itItem = 0;
+        itItemCollection = 1;
+    }
+    required eMarketType marketType = 1 [default = atNone];
+    required string shopItemName = 2 [default = ""];
+    required bytes receipt = 3 [default = "\0"];
+    required eBuyType buyType = 4 [default = btInGameCash];
+    required eItemType itemType = 5 [default = itItem];
+}

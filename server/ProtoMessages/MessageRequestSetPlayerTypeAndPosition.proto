@@ -1,0 +1,15 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestSetPlayerTypeAndPositionBase";
+
+message MessageRequestSetPlayerTypeAndPosition {
+    enum ePlayerType {
+        ptWATCHER = 0;
+        ptINVESTOR = 1;
+        ptPLAYER = 2;
+    }
+    required int64 roomId = 1 [default = 0];
+    required ePlayerType playerType = 2 [default = ptWATCHER];
+    required int32 position = 3 [default = 0];
+}

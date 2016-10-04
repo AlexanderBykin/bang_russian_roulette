@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+import "ProtoMessageType.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestBase";
+
+message MessageRequest {
+    required eProtoMessageType messageType = 1 [default = cmtNone];
+    required bytes messageBody = 2 [default = "\0"];
+}

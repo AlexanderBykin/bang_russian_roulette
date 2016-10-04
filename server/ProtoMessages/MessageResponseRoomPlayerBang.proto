@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "MessageResponseRoundPlayerBang.proto";
+
+option optimize_for = LITE_RUNTIME;
+
+option java_package = "ProtoMessages";
+
+option java_outer_classname = "MessageResponseRoomPlayerBangBase";
+
+message MessageResponseRoomPlayerBang {
+    required int64 roomId = 1 [default = 0];
+    required MessageResponseRoundPlayerBang result = 2;
+}

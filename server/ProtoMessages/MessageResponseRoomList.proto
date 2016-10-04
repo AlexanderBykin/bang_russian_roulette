@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+import "MessageResponseRoomInfo.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseRoomListBase";
+
+message MessageResponseRoomList {
+    repeated MessageResponseRoomInfo roomList = 1;
+}

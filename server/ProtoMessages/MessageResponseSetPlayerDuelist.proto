@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+import "MessageResponseRoundPlayerDuelist.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseSetPlayerDuelistBase";
+
+message MessageResponseSetPlayerDuelist {
+    required int64 roomId = 1 [default = 0];
+    required MessageResponseRoundPlayerDuelist playerInfo = 2;
+}

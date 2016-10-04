@@ -1,0 +1,8 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageRequestPlayerInfoBase";
+
+message MessageRequestPlayerInfo {
+    required int64 playerId = 1 [default = 0];
+}

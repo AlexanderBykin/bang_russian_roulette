@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+import "MessageResponseRoomPlayerInfo.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseSetPlayerTypeAndPositionBase";
+
+message MessageResponseSetPlayerTypeAndPosition {
+    required int64 roomId = 1 [default = 0];
+    required MessageResponseRoomPlayerInfo player = 2;
+}

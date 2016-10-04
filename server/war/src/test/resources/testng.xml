@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="MultiPay Actor Test Suite" verbose="1">
+
+    <test name="ActorsTest">
+
+		<classes>
+            <!--class name="ru.mpay.act.ActorsTest" /-->
+		</classes>
+	</test>
+</suite>
+	
+

@@ -1,0 +1,124 @@
+/*
+    Bang Russian Roulette (server) - This is real online and multiplayer game published at Google Play.
+    Copyright (C) 2016  Alexander Shniperson
+    Email: alex.shniperson@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+configure(allprojects - project(":brr-mda")) {
+    apply plugin: 'scala'
+
+    configurations.all {
+        exclude group: 'log4j';
+        exclude group: 'commons-logging'
+    }
+
+    ext {
+        scalaBinaryVersion = "2.11"
+        scalaMinorVersion = "8"
+        akkaVersion = "2.4.5"
+    }
+
+    dependencies {
+        compile("org.scala-lang:scala-library:$scalaBinaryVersion.$scalaMinorVersion")
+        compile("com.typesafe.akka:akka-actor_$scalaBinaryVersion:$akkaVersion")
+
+        compile 'org.slf4j:slf4j-api:1.7.13'
+        compile 'org.slf4j:jcl-over-slf4j:1.7.13' // replacement for apache commons-logging
+        compile 'ch.qos.logback:logback-classic:1.1.3'
+
+        compile group: 'joda-time', name: 'joda-time', version: '2.2'
+        compile group: 'org.joda', name: 'joda-convert', version: '1.3.1'
+    }
+}
+
+subprojects {
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    sourceSets {
+        main {
+            scala {
+                srcDirs = ['src/main/scala',
+                           'src/main/java',
+                           "generated/src/main/scala",
+                           'generated/src/main/java']
+            }
+            java {
+                srcDirs = []
+            }
+            resources {
+                srcDirs = ['src/main/resources',
+                           'generated/src/main/resources',
+                           'generated/src/main/java']
+            }
+        }
+    }
+
+    compileScala {
+        scalaCompileOptions.optimize = true
+        scalaCompileOptions.additionalParameters = ['-target:jvm-1.8', '-Ybackend:GenBCode', '-feature',
+                                                    '-language:postfixOps', '-language:implicitConversions']
+    }
+
+    compileJava.options.encoding = 'UTF-8'
+    compileScala.options.encoding = 'UTF-8'
+}
+
+task genProto << {
+    ext {
+        protocPath = "/usr/local/bin/protoc"
+        clientProtoDir = projectDir.path + "/../client/Classes/ProtoMessages/"
+        serverSrcDir = project(':brr-core').projectDir.path + "/generated/src/main/java/"
+        serverProtoDir = "$serverSrcDir/ProtoMessages/"
+        protoSrcDir = projectDir.path + "/ProtoMessages"
+        cleanDirs = [clientProtoDir, serverProtoDir]
+    }
+    cleanDirs.each {
+        cleanDir ->
+            println 'Cleaning ' + cleanDir
+            delete cleanDir
+    }
+    println clientProtoDir
+    println serverProtoDir
+    if (!new File(clientProtoDir).exists()) {
+        new File(clientProtoDir).mkdirs()
+    }
+    if (!new File(serverProtoDir).exists()) {
+        new File(serverProtoDir).mkdirs()
+    }
+    FileTree protoFiles = fileTree(dir: protoSrcDir, include: '*.proto')
+    protoFiles.forEach {
+        protoFile ->
+            println 'Generating protoFile ' + protoFile
+            exec {
+                executable = protocPath
+                args = ["--cpp_out=$clientProtoDir", "--proto_path=$protoSrcDir", "$protoFile"]
+            }
+            exec {
+                executable = protocPath
+                args = ["--java_out=$serverSrcDir", "--proto_path=$protoSrcDir", "$protoFile"]
+            }
+    }
+}
+

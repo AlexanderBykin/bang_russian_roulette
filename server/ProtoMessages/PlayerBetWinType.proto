@@ -1,0 +1,9 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "PlayerBetWinTypeBase";
+
+enum PlayerBetWinType {
+    pbwtWin = 0;
+    pbwtLose = 1;
+}

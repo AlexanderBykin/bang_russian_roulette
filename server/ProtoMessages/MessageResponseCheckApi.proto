@@ -1,0 +1,12 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseCheckApiBase";
+
+message MessageResponseCheckApi {
+    enum eCheckApiStatus {
+        casSUCCESS = 1;
+        casFAILED = 2;
+    }
+    required eCheckApiStatus status = 1  [default = casFAILED];
+}

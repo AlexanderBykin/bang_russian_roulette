@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  This is used to map the model types to
+  hibernate types.
+-->
+<mappings name="Hibernate">
+    <mapping>
+        <from>Blob</from>
+        <from>PrimitiveTypes::Blob</from>
+        <from>datatype::Blob</from>
+        <to>org.andromda.persistence.hibernate.usertypes.HibernateByteBlobType</to>
+    </mapping>
+    <mapping>
+        <from>Clob</from>
+        <from>PrimitiveTypes::Clob</from>
+        <from>datatype::Clob</from>
+        <to>org.andromda.persistence.hibernate.usertypes.HibernateStringClobType</to>
+    </mapping>
+</mappings>

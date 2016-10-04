@@ -1,0 +1,10 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseTimeToPutBulletsBase";
+
+message MessageResponseTimeToPutBullets {
+    required int64 roomId = 1 [default = 0];
+    required int32 time = 2 [default = 0];
+    required int32 possibleBullets = 3 [default = 0];
+}

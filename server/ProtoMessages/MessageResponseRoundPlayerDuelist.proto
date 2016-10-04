@@ -1,0 +1,11 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+option java_package = "ProtoMessages";
+option java_outer_classname = "MessageResponseRoundPlayerDuelistBase";
+
+message MessageResponseRoundPlayerDuelist {
+    required int64 playerId = 1 [default = 0];
+    required int32 playerPosition = 2 [default = 0];
+    required bool playerIsDuelist = 3 [default = false];
+    required int32 winAmount = 4 [default = 0];
+}
