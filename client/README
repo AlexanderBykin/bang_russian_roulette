@@ -1,13 +1,15 @@
 Bang Russian Roulette (client) - online multiplayer game.
 
 Developed with:
-- Cocos2dx 3+ version;
+- Cocos2dx 3+ version, last working commit [189ffc4e27cd49e2273f41465287c222b40de434];
 - C++;
 - Protobuf;
 - Native low level sockets;
 
 First of all read more about setup Cocos2dx and SdkBox to build for iOS and Android at their site:
 http://www.cocos2d-x.org/
+
+To build client project correctly add symbolic link to coco2dx directory into "client/cocos2d" path.
 
 Protobuf classes generates from the server side script, read more at server readme file.
 

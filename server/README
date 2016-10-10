@@ -6,7 +6,7 @@ Developed with:
 - Hibernate 3.6.10;
 - AndroMDA 3.4;
 - Pushka Json 0.6.0;
-- Protobuf 3.0.0-beta-3 commit [2fe0556];
+- Protobuf 3.0.0-beta-3, last working commit [2fe0556c7abbe31c02147b9171397737a35bfe3b];
 
 Project structure:
 - common: planned to use as artifact between many systems;
@@ -20,10 +20,17 @@ Setup your PC:
 - download and install Maven (this need to build Protobuf) https://maven.apache.org/
 - download and install Gradle (this nedd to build our server application) http://gradle.org/
 - clone Protobuf https://github.com/google/protobuf
-- (optional) build Protobuf protoc compiler, copy build-protobuf-iphonesim.sh into Protobuf directory and run it, this file builds static library for iOS, in my case it is placed at '/usr/local/platform/i386-sim/lib/' create symbolic link to Protoc compiler from '/usr/local/platform/i386-sim/bin/protoc' into '/usr/local/bin/protoc'
+- (optional) build Protobuf protoc compiler, copy "build-protobuf-iphonesim.sh" into Protobuf directory and run it, this file builds static library
+ for iOS, in my case it is placed at "/usr/local/platform/i386-sim/lib/", then create symbolic link to Protoc compiler
+ from "/usr/local/platform/i386-sim/bin/protoc" into "/usr/local/bin/protoc"
+- setup Protobuf path at user variables: PROTOBUF_ROOT=<path_to_protobuf_directory>, that variable uses at client build scripts
 
 Build hibernate classes from UML diagramm use command:
 gradle brr-mda:generate
+
+UML diagramm can be modified with MagicDraw 16.0 by opening file "mda/src/main/uml/brr.mdxml", after edit is done just save the file and then export model
+for AndroMDA generator by using menu at MagicDraw "File > Export > EMF UML2 (v2.x) XMI", for export use directory "mda/src/main/uml", when you asked for
+file replacement just push Yes.
 
 Build Protobuf client/server classes from proto files:
 gradle genProto

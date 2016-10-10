@@ -2,36 +2,31 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-# $(call import-add-path, $(LOCAL_PATH)/../../cocos2d)
-# $(call import-add-path, $(LOCAL_PATH)/../../cocos2d/external)
-# $(call import-add-path, $(LOCAL_PATH)/../../cocos2d/cocos)
-# $(call import-add-path,$(LOCAL_PATH)/../../../../../cocos2d/cocos/audio/include)
-$(call import-add-path, $(LOCAL_PATH)/../../../../../cocos2d/cocos/prebuilt-mk)
+$(call import-add-path, $(COCOS_ROOT)/cocos/prebuilt-mk)
 $(call import-add-path, $(LOCAL_PATH))
 
 LOCAL_MODULE := BrrGame_shared
 
 LOCAL_MODULE_FILENAME := libBrrGame
 
-# /opt/protobuf/src/google/protobuf/stubs/atomicops_internals_x86_gcc.cc
-CC_LITE_SRC_FILES := /opt/protobuf/src/google/protobuf/stubs/common.cc \
-/opt/protobuf/src/google/protobuf/stubs/once.cc \
-/opt/protobuf/src/google/protobuf/stubs/strutil.cc \
-/opt/protobuf/src/google/protobuf/stubs/status.cc \
-/opt/protobuf/src/google/protobuf/stubs/stringpiece.cc \
-/opt/protobuf/src/google/protobuf/stubs/stringprintf.cc \
-/opt/protobuf/src/google/protobuf/stubs/int128.cc \
-/opt/protobuf/src/google/protobuf/stubs/structurally_valid.cc \
-/opt/protobuf/src/google/protobuf/extension_set.cc \
-/opt/protobuf/src/google/protobuf/generated_message_util.cc \
-/opt/protobuf/src/google/protobuf/message_lite.cc \
-/opt/protobuf/src/google/protobuf/repeated_field.cc \
-/opt/protobuf/src/google/protobuf/arenastring.cc \
-/opt/protobuf/src/google/protobuf/arena.cc \
-/opt/protobuf/src/google/protobuf/wire_format_lite.cc \
-/opt/protobuf/src/google/protobuf/io/coded_stream.cc \
-/opt/protobuf/src/google/protobuf/io/zero_copy_stream.cc \
-/opt/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+CC_LITE_SRC_FILES := $(PROTOBUF_ROOT)/src/google/protobuf/stubs/common.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/once.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/strutil.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/status.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/stringpiece.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/stringprintf.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/int128.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/stubs/structurally_valid.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/extension_set.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/generated_message_util.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/message_lite.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/repeated_field.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/arenastring.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/arena.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/wire_format_lite.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/io/coded_stream.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/io/zero_copy_stream.cc \
+$(PROTOBUF_ROOT)/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
 
 FILE_LIST := $(wildcard $(LOCAL_PATH)/../../Classes/*.c*)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/../../Classes/*/*.c*)

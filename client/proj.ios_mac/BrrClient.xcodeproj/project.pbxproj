@@ -213,7 +213,7 @@
 /* Begin PBXFileReference section */
 		00304962A0BFDC6B1B7D9896 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		0861479D8CD3B8D66667C2BC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
-		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../cocos2d/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
+		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "$(COCOS_ROOT)/platform/third_party/ios/libraries/libcurl.a"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* BrrClient iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BrrClient iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -297,10 +297,10 @@
 		983818391B4CEB71006874B3 /* CCMenuItemImageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuItemImageLabel.h; sourceTree = "<group>"; };
 		9838C9DD1B453D7E00C3AC05 /* SceneIntro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneIntro.cpp; sourceTree = "<group>"; };
 		9838C9E01B453D7E00C3AC05 /* SceneIntro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneIntro.h; sourceTree = "<group>"; };
-		983C80AB1CA267DD00DCE4C4 /* libcocos2d Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d Mac.a"; path = "../../../../../../dev/cocos2d-x-repo/prebuilt/mac/libcocos2d Mac.a"; sourceTree = "<group>"; };
+		983C80AB1CA267DD00DCE4C4 /* libcocos2d Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d Mac.a"; path = "$(COCOS_ROOT)/prebuilt/mac/libcocos2d Mac.a"; sourceTree = "<group>"; };
 		983C80AE1CA2699D00DCE4C4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		983C80B01CA26A0200DCE4C4 /* libsimulator iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsimulator iOS.a"; path = "../../../../../../dev/cocos2d-x-repo/prebuilt/ios/libsimulator iOS.a"; sourceTree = "<group>"; };
-		983C80B21CA26AB000DCE4C4 /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "../../../../../../dev/cocos2d-x-repo/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<group>"; };
+		983C80B01CA26A0200DCE4C4 /* libsimulator iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsimulator iOS.a"; path = "$(COCOS_ROOT)/prebuilt/ios/libsimulator iOS.a"; sourceTree = "<group>"; };
+		983C80B21CA26AB000DCE4C4 /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "$(COCOS_ROOT)/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<group>"; };
 		983FB4BA1B8DAC590013C618 /* DialogDuel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DialogDuel.cpp; path = Dialog/DialogDuel.cpp; sourceTree = "<group>"; };
 		983FB4BB1B8DAC590013C618 /* DialogDuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogDuel.h; path = Dialog/DialogDuel.h; sourceTree = "<group>"; };
 		983FB4BF1B8DBD1C0013C618 /* RoomPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoomPlayer.cpp; sourceTree = "<group>"; };
@@ -1283,14 +1283,14 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					../../../../cocos2d/cocos/platform/ios,
-					../../../../cocos2d/cocos/platform/ios/Simulation,
+					"$(COCOS_ROOT)/cocos/platform/ios",
+					"$(COCOS_ROOT)/cocos/platform/ios/Simulation",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Volumes/hdd/dev/cocos2d-x-repo/prebuilt/ios",
+					"$(COCOS_ROOT)/prebuilt/ios",
 					"\"PluginSdkboxPlay.framework\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
@@ -1334,14 +1334,14 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					../../../../cocos2d/cocos/platform/ios,
-					../../../../cocos2d/cocos/platform/ios/Simulation,
+					"$(COCOS_ROOT)/cocos/platform/ios",
+					"$(COCOS_ROOT)/cocos/platform/ios/Simulation",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Volumes/hdd/dev/cocos2d-x-repo/prebuilt/ios",
+					"$(COCOS_ROOT)/prebuilt/ios",
 					"\"PluginSdkboxPlay.framework\"",
 				);
 				OTHER_CFLAGS = "-DSDKBOX_ENABLED";
@@ -1381,13 +1381,13 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					../../../../cocos2d/cocos/platform/mac,
-					../../../../cocos2d/external/glfw3/include/mac,
+					"$(COCOS_ROOT)/cocos/platform/mac",
+					"$(COCOS_ROOT)/external/glfw3/include/mac",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Volumes/hdd/dev/cocos2d-x-repo/prebuilt/mac",
+					"$(COCOS_ROOT)/prebuilt/mac",
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
@@ -1419,13 +1419,13 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					../../../../cocos2d/cocos/platform/mac,
-					../../../../cocos2d/external/glfw3/include/mac,
+					"$(COCOS_ROOT)/cocos/platform/mac",
+					"$(COCOS_ROOT)/external/glfw3/include/mac",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Volumes/hdd/dev/cocos2d-x-repo/prebuilt/mac",
+					"$(COCOS_ROOT)/prebuilt/mac",
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
@@ -1446,19 +1446,19 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../../../cocos2d,
-					../../../../cocos2d/cocos,
-					../../../../cocos2d/cocos/base,
-					../../../../cocos2d/cocos/physics,
-					../../../../cocos2d/cocos/math,
-					../../../../cocos2d/cocos/2d,
-					../../../../cocos2d/cocos/ui,
-					../../../../cocos2d/cocos/network,
-					../../../../cocos2d/cocos/audio/include,
-					"../../../../cocos2d/cocos/editor-support",
-					../../../../cocos2d/extensions,
-					../../../../cocos2d/external,
-					../../../../cocos2d/external/chipmunk/include/chipmunk,
+					"$(COCOS_ROOT)",
+					"$(COCOS_ROOT)/cocos",
+					"$(COCOS_ROOT)/cocos/base",
+					"$(COCOS_ROOT)/cocos/physics",
+					"$(COCOS_ROOT)/cocos/math",
+					"$(COCOS_ROOT)/cocos/2d",
+					"$(COCOS_ROOT)/cocos/ui",
+					"$(COCOS_ROOT)/cocos/network",
+					"$(COCOS_ROOT)/cocos/audio/include",
+					"$(COCOS_ROOT)/cocos/editor-support",
+					"$(COCOS_ROOT)/extensions",
+					"$(COCOS_ROOT)/external",
+					"$(COCOS_ROOT)/external/chipmunk/include/chipmunk",
 					"/usr/local/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -1487,19 +1487,19 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../../../cocos2d,
-					../../../../cocos2d/cocos,
-					../../../../cocos2d/cocos/base,
-					../../../../cocos2d/cocos/physics,
-					../../../../cocos2d/cocos/math,
-					../../../../cocos2d/cocos/2d,
-					../../../../cocos2d/cocos/ui,
-					../../../../cocos2d/cocos/network,
-					../../../../cocos2d/cocos/audio/include,
-					"../../../../cocos2d/cocos/editor-support",
-					../../../../cocos2d/extensions,
-					../../../../cocos2d/external,
-					../../../../cocos2d/external/chipmunk/include/chipmunk,
+					"$(COCOS_ROOT)",
+					"$(COCOS_ROOT)/cocos",
+					"$(COCOS_ROOT)/cocos/base",
+					"$(COCOS_ROOT)/cocos/physics",
+					"$(COCOS_ROOT)/cocos/math",
+					"$(COCOS_ROOT)/cocos/2d",
+					"$(COCOS_ROOT)/cocos/ui",
+					"$(COCOS_ROOT)/cocos/network",
+					"$(COCOS_ROOT)/cocos/audio/include",
+					"$(COCOS_ROOT)/cocos/editor-support",
+					"$(COCOS_ROOT)/extensions",
+					"$(COCOS_ROOT)/external",
+					"$(COCOS_ROOT)/external/chipmunk/include/chipmunk",
 					"/usr/local/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
