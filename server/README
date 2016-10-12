@@ -24,6 +24,9 @@ Setup your PC:
  for iOS, in my case it is placed at "/usr/local/platform/i386-sim/lib/", then create symbolic link to Protoc compiler
  from "/usr/local/platform/i386-sim/bin/protoc" into "/usr/local/bin/protoc"
 - setup Protobuf path at user variables: PROTOBUF_ROOT=<path_to_protobuf_directory>, that variable uses at client build scripts
+- the application start TCP server at some IP address and port that defined at "core/src/main/resources/application.conf", change it before build and run
+- install PostgreSQL 9.4+ version, then create empty database with name "brrdb"
+- setup glassfish web server, create JDBC Connection Pool and define JNDI Name, run command "glassfish4/bin/asadmin --user admin --echo=true --interactive=false add-resources server/glassfish-datasource.xml"
 
 Build hibernate classes from UML diagramm use command:
 gradle brr-mda:generate

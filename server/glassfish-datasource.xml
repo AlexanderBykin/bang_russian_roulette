@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC 
+   "-//Sun Microsystems Inc.//DTD Application Server 9.1 Domain//EN" 
+   "*http://www.sun.com/software/appserver/dtds/sun-resources_1_2.dtd*">
+<resources>
+	<jdbc-connection-pool datasource-classname="org.postgresql.ds.PGConnectionPoolDataSource" res-type="javax.sql.ConnectionPoolDataSource" max-pool-size="300" name="brrdb-pool">
+      <property name="User" value="postgres"></property>
+      <property name="DatabaseName" value="brrdb"></property>
+      <property name="LogLevel" value="0"></property>
+      <property name="Password" value=""></property>
+      <property name="ServerName" value="localhost"></property>
+      <property name="Ssl" value="false"></property>
+      <property name="ProtocolVersion" value="0"></property>
+      <property name="TcpKeepAlive" value="false"></property>
+      <property name="SocketTimeout" value="0"></property>
+      <property name="PortNumber" value="0"></property>
+      <property name="LoginTimeout" value="0"></property>
+      <property name="UnknownLength" value="2147483647"></property>
+      <property name="PrepareThreshold" value="5"></property>
+    </jdbc-connection-pool>
+    <jdbc-resource pool-name="brrdb-pool" jndi-name="jdbc/brrdb"></jdbc-resource>
+</resources>

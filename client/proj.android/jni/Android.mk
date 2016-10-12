@@ -44,7 +44,7 @@ $(LOCAL_PATH)/../../Classes/Libs \
 $(LOCAL_PATH)/../../Classes/MessageSerializer \
 $(LOCAL_PATH)/../../Classes/Network \
 $(LOCAL_PATH)/../../Classes/ProtoMessages \
-/opt/protobuf/src
+$(PROTOBUF_ROOT)/src
 
 LOCAL_LDLIBS := -landroid
 LOCAL_LDLIBS += -llog

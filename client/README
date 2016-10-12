@@ -13,6 +13,8 @@ To build client project correctly add symbolic link to coco2dx directory into "c
 
 Protobuf classes generates from the server side script, read more at server readme file.
 
+Client connects to some server IP address and port that is defined at file "GlobalProperties.cpp" change it before build and run project.
+
 The game uses pre-build libs of Cocos2dx that can be build with command:
 cocos gen-libs -p android -m release
 cocos gen-libs -p ios -m release
